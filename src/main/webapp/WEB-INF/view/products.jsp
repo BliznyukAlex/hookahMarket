@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@include file="includes/header.jsp"%>
 
@@ -10,14 +11,18 @@
     </tr>
     </thead>
     <tbody>
+    <c:forEach var="tempProducts" items="${products}">
     <tr>
-<%--        <th scope="row">1</th>--%>
-        <td>${productId}</td>
-        <td>${productName}</td>
-        <td>${productPrice}</td>
+        <td> ${tempProducts.productId}</td>
+        <td> ${tempProducts.productName}</td>
+        <td> ${tempProducts.productPrice}</td>
+
     </tr>
 
+
+    </c:forEach>
     </tbody>
+
 </table>
 
 

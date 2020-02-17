@@ -1,8 +1,6 @@
 package com.ma.hookahMarket.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,23 +9,56 @@ import java.io.Serializable;
 /**
  * Товар.
  */
-@NoArgsConstructor
+//@NoArgsConstructor
 @Data
-@AllArgsConstructor
+//@Getter
+//@Setter
+//@AllArgsConstructor
 @Entity
 @Table(name = "product")
 public class Product implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", insertable = false, updatable = false, nullable = false)
-	private Long id;
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id") //, insertable = false, updatable = false, nullable = false)
+	private Long productId;
 
 	@Column(name = "name", nullable = false)
-	private String name;
+	private String productName;
 
 	@Column(name = "price", nullable = false)
 	@NotNull
-	private Double price;
+	private Double productPrice;
 
+	public Product() {
+	}
+	public Product(Long productId,String productName,Double productPrice) {
+		this.productId=productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+	}
+
+	public Long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public Double getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(Double productPrice) {
+		this.productPrice = productPrice;
+	}
 }

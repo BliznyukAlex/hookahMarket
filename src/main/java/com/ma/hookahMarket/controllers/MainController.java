@@ -1,14 +1,19 @@
 package com.ma.hookahMarket.controllers;
 
+import com.ma.hookahMarket.entity.Product;
 import com.ma.hookahMarket.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -39,8 +44,10 @@ public class MainController {
     public String admin(){
         return "index";
     }
-    @GetMapping("/products")
-    public String products(){
+    @RequestMapping("/products")
+    public String products(Model model){
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("products",products);
         return "products";
     }
 
@@ -49,9 +56,10 @@ public class MainController {
         return "add";
     }
     @PostMapping("/add")
-    public String addProduct(@RequestParam String productId, @RequestParam String productName, @RequestParam Double productPrice){
+    public String addProduct(@RequestParam Long productId, @RequestParam String productName, @RequestParam Double productPrice){
 
         log.info(productId+ productName+ productPrice);
+        productService.add(new Product(productId,productName,productPrice));
 //        System.out.println(productId+productName+productPrice);
         return "redirect:/products";
 
