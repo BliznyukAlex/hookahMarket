@@ -21,47 +21,57 @@ public class MainController {
     ProductService productService;
 
     private static Log log = LogFactory.getLog(MainController.class);
+
     @GetMapping("/")
     public String test() {
         return "hello";
     }
 
-//    @PostMapping("/add")
-//    public boolean addProduct(@RequestBody Product product){
-//        return productService.add(product);
-//    }
-//
 //    @DeleteMapping("/delete")
 //    public boolean deleteProduct(@RequestParam long productId){
 //        return productService.delete(productId);
 //    }
-//
-//    @GetMapping("/getAll")
-//    public List<Product> getAllProducts(){
-//        return productService.getAllProducts();
 
     @GetMapping("/admin")
-    public String admin(){
+    public String admin() {
         return "index";
     }
+
     @RequestMapping("/products")
-    public String products(Model model){
+    public String products(Model model) {
         List<Product> products = productService.getAllProducts();
-        model.addAttribute("products",products);
+        model.addAttribute("products", products);
         return "products";
     }
 
     @GetMapping("/add")
-    public String addProduct(){
+    public String addProduct() {
         return "add";
     }
+
     @PostMapping("/add")
-    public String addProduct(@RequestParam Long productId, @RequestParam String productName, @RequestParam Double productPrice){
-
-        log.info(productId+ productName+ productPrice);
-        productService.add(new Product(productId,productName,productPrice));
-//        System.out.println(productId+productName+productPrice);
+    public String addProduct(@RequestParam Long productId, @RequestParam String productName, @RequestParam Double productPrice) {
+        productService.add(new Product(productId, productName, productPrice));
         return "redirect:/products";
+    }
 
+    @GetMapping("/updateProduct")
+    public String updateProduct(@RequestParam("productId") long theId,
+                                Model Model) {
+
+        // get the customer from our service
+        Product product = productService.getProduct(theId);
+
+        // set customer as a model attribute to pre-populate the form
+        Model.addAttribute("product", product);
+
+        // send over to our form
+        return "add";
+    }
+
+    @PostMapping("/updateProduct")
+    public String updateProduct(@RequestParam Long productId, @RequestParam String productName, @RequestParam Double productPrice) {
+        productService.add(new Product(productId, productName, productPrice));
+        return "redirect:/products";
     }
 }

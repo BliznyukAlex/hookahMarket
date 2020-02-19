@@ -16,7 +16,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean add(Product product) {
-        if (productRepo.existsById(product.getProductId())) return false;
+//        if (productRepo.existsById(product.getProductId())) return false;
         productRepo.save(product);
         return true;
     }
