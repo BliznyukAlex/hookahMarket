@@ -39,27 +39,10 @@
 
 <br>
 
-<s:url var="newProduct" value="/add"></s:url>
-<%--<a href="${newProduct}">Create product</a>--%>
-
-<%--<sf:form id="productForm" class="form-horizontal"--%>
-<%--         action="${newProduct}">--%>
-<%--    <button type="submit" class="btn btn-primary">--%>
-<%--        Create product--%>
-<%--    </button>--%>
-<%--</sf:form>--%>
-
-<%--<sf:form id="productForm" class="form-horizontal"--%>
-<%--         action="${add}">--%>
-
-<%--    <div class="form-group">--%>
-<%--        <div class="col-sm-offset-3 col-sm-8">--%>
-<%--            <a href="<c:url value="products" />" class="btn">--%>
-<%--                Back--%>
-<%--            </a>--%>
-<%--            <button type="submit" class="btn btn-primary">--%>
-<%--                Create product--%>
-<%--            </button>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--&lt;%&ndash;</sf:form>&ndash;%&gt;--%>
+<div>
+    <a href="<c:url value="add"/>">
+        <button type="submit" class="btn btn-primary">
+            Create product
+        </button>
+    </a>
+</div>
