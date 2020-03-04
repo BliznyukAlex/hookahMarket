@@ -45,7 +45,11 @@ public class MainController {
     }
 
     @GetMapping("/add")
-    public String addProduct() {
+    public String addProduct(Model Model) {
+        Product product = new Product();
+
+        Model.addAttribute("product", product);
+
         return "add";
     }
 
@@ -74,4 +78,6 @@ public class MainController {
         productService.add(new Product(productId, productName, productPrice));
         return "redirect:/products";
     }
+
+
 }

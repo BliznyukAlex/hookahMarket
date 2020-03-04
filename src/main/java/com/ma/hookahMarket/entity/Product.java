@@ -29,5 +29,4 @@ public class Product implements Serializable {
 	@Column(name = "price")
 	@NotNull
 	private Double productPrice;
-
 }
