@@ -8,10 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,17 +24,12 @@ public class MainController {
         return "hello";
     }
 
-//    @DeleteMapping("/delete")
-//    public boolean deleteProduct(@RequestParam long productId){
-//        return productService.delete(productId);
-//    }
-
     @GetMapping("/admin")
     public String admin() {
         return "index";
     }
 
-    @RequestMapping("/products")
+    @GetMapping("/products")
     public String products(Model model) {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
@@ -79,5 +71,10 @@ public class MainController {
         return "redirect:/products";
     }
 
-
+    @PostMapping("/products")
+//    @RequestMapping(method = RequestMethod.DELETE, value = "/product/{productId}")
+    public String deleteProduct(@RequestParam Long productId) {
+        productService.delete(productId);
+        return "redirect:/products";
+    }
 }
