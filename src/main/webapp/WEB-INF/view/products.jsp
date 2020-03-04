@@ -24,7 +24,8 @@
             <td> ${tempProducts.productId}</td>
             <td> ${tempProducts.productName}</td>
             <td> ${tempProducts.productPrice}</td>
-            <td><img src="${pageContext.request.contextPath}${initParam.imagesPath}products/1.jpg"/></td>
+<%--            <td><img src="${tempProducts.productImagePath}"/></td>--%>
+            <td><img src="${pageContext.request.contextPath}${initParam.imagesPath}${tempProducts.productImagePath}" style="width: 140px; height: 140px;"/></td>
             <td>
                 <!-- display the update link -->
                 <a href="${updateLink}">Update</a>
