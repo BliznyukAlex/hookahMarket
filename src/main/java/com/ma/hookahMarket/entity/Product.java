@@ -29,4 +29,8 @@ public class Product implements Serializable {
 	@Column(name = "price")
 	@NotNull
 	private Double productPrice;
+
+	@Column(name = "imagePath")
+	private String productImagePath;
+
 }
